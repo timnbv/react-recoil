@@ -1,20 +1,21 @@
 // Imports
 import React from 'react'
 import { useRecoilState, useSetRecoilState } from 'recoil'
-import { Link, useHistory } from 'react-router-dom'
+// import { Link, useHistory } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 // App imports
-import routes from '../../routes'
-import { commonNotification } from '../../common/api/state'
-import { userAuth } from '../../user/api/state'
-import { logoutUnset } from '../../user/api/actions/query'
+import routes from '../routes'
+import { commonNotification } from './api/state'
+import { userAuth } from '../user/api/state'
+import { logoutUnset } from '../user/api/actions/query'
 
 // Component
 const Header = () => {
   // state
   const [auth, setAuth] = useRecoilState(userAuth)
   const setNotification = useSetRecoilState(commonNotification)
-  let history = useHistory()
+  let navigate = useNavigate()
 
   // onLogout
   const onLogout = () => {
@@ -28,9 +29,8 @@ const Header = () => {
       isVisible: true
     })
 
-    logoutUnset()
-
-    history.push(routes.user.login)
+    logoutUnset();
+    navigate(routes.user.login);
   }
 
   // render

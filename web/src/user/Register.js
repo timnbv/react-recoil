@@ -1,18 +1,18 @@
 // Imports
 import React, { useState } from 'react'
 import { useSetRecoilState } from 'recoil'
-
+import {useNavigate} from 'react-router-dom'
 // App imports
-import routes from '../../routes'
-import { commonNotification } from '../../common/api/state'
-import { register } from '../api/actions/mutation'
+import routes from '../routes'
+import { commonNotification } from '../common/api/state'
+import { register } from './api/actions/mutation'
 
 // Component
-const Register = ({ history }) => {
+const Register = ({}) => {
   // state
   const [username, setUsername] = useState('')
   const setNotification = useSetRecoilState(commonNotification)
-
+  const navigate = useNavigate();
   // on submit
   const onSubmit = async event => {
     event.preventDefault()
@@ -29,7 +29,7 @@ const Register = ({ history }) => {
 
       // redirect
       if (data.success) {
-        history.push(routes.user.login)
+        navigate(routes.user.login)
       }
     } catch (error) {
       setNotification({

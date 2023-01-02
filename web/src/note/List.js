@@ -1,19 +1,21 @@
 // Imports
 import React from 'react'
 import { useRecoilValueLoadable } from 'recoil'
+import {useNavigate} from 'react-router-dom'
 
 // App imports
-import routes from '../../routes'
-import { noteList } from '../api/state'
+import routes from '../routes'
+import { noteList } from './api/state'
 
 // Component
-const List = ({ history }) => {
+const List = ({}) => {
   // state
   const notes = useRecoilValueLoadable(noteList)
+  const navigate = useNavigate();
 
   // on create
   const onCreate = () => {
-    history.push(routes.note.create)
+    navigate(routes.note.create)
   }
 
   // render
