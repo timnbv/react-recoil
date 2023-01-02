@@ -3,7 +3,7 @@ import React from 'react'
 import { useRecoilValue } from 'recoil'
 
 // App imports
-import { userAuth } from '../../user/api/state'
+import { userAuth } from './api/state'
 
 // Component
 const Dashboard = () => {

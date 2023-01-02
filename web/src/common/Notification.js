@@ -3,7 +3,7 @@ import React from 'react'
 import { useRecoilState } from 'recoil'
 
 // App imports
-import { commonNotification } from './../api/state'
+import { commonNotification } from './api/state'
 
 // Component
 const Notification = () => {

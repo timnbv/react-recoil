@@ -1,20 +1,20 @@
 // Imports
 import React, { useState } from 'react'
 import { useSetRecoilState } from 'recoil'
-
+import {useNavigate } from 'react-router-dom'
 // App imports
-import routes from '../../routes'
-import { commonNotification } from '../../common/api/state'
-import { noteUpdatedOn } from '../api/state'
-import { create } from '../api/actions/mutation'
+import routes from '../routes'
+import { commonNotification } from '../common/api/state'
+import { noteUpdatedOn } from './api/state'
+import { create } from './api/actions/mutation'
 
 // Component
-const Create = ({ history }) => {
+const Create = ({}) => {
   // state
   const [text, setText] = useState('Hello world')
   const setNotification = useSetRecoilState(commonNotification)
   const setUpdatedOn = useSetRecoilState(noteUpdatedOn)
-
+  const navigate = useNavigate();
   // on submit
   const onSubmit = async event => {
     event.preventDefault()
@@ -34,7 +34,7 @@ const Create = ({ history }) => {
         setUpdatedOn(new Date())
 
         // redirect to note list
-        history.push(routes.note.list)
+        navigate(routes.note.list)
       }
     } catch (error) {
       setNotification({
@@ -46,7 +46,7 @@ const Create = ({ history }) => {
 
   // on cancel
   const onCancel = () => {
-    history.push(routes.note.list)
+    navigate(routes.note.list)
   }
 
   // render

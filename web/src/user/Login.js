@@ -1,20 +1,20 @@
 // Imports
 import React, { useState } from 'react'
 import { useSetRecoilState } from 'recoil'
-
+import {useNavigate} from 'react-router-dom'
 // App imports
-import routes from '../../routes'
-import { commonNotification } from '../../common/api/state'
-import { userAuth } from '../../user/api/state'
-import { login, loginSet } from '../api/actions/query'
+import routes from '../routes'
+import { commonNotification } from '../common/api/state'
+import { userAuth } from './api/state'
+import { login, loginSet } from './api/actions/query'
 
 // Component
-const Login = ({ history }) => {
+const Login = () => {
   // state
   const [username, setUsername] = useState('user')
   const setNotification = useSetRecoilState(commonNotification)
   const setUserAuth = useSetRecoilState(userAuth)
-
+  const navigate = useNavigate();
   // on submit
   const onSubmit = async event => {
     event.preventDefault()
@@ -41,7 +41,7 @@ const Login = ({ history }) => {
         loginSet(data.token, data.user)
 
         // redirect to dashboard
-        history.push(routes.user.dashboard)
+        navigate(routes.user.dashboard)
       }
     } catch (error) {
       setNotification({
